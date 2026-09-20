@@ -1,0 +1,48 @@
+{
+	"name": "@barzm/skills",
+	"version": "1.0.0",
+	"description": "Barzm Skills",
+	"homepage": "https://github.com/barzm/skills#readme",
+	"bugs": {
+		"url": "https://github.com/barzm/skills/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/barzm/skills.git"
+	},
+	"license": "MIT",
+	"author": "Michael Barzizza <@barzm>",
+	"type": "commonjs",
+	"main": "index.js",
+	"files": [
+		"dist",
+		"scripts",
+		"skills",
+		"skills.sh.json"
+	],
+	"publishConfig": {
+		"access": "public",
+		"provenance": true
+	},
+	"scripts": {
+		"build": "node scripts/build-discovery-index.mjs",
+		"build:discovery": "node scripts/build-discovery-index.mjs",
+		"check": "pnpm check:code && pnpm check:md",
+		"check:code": "biome check .",
+		"check:md": "prettier --check \"**/*.{md,mdx}\"",
+		"fetch:pg-docs": "bash skills/postgres-agent-comments/scripts/fetch_pg_docs.sh",
+		"format": "pnpm format:code && pnpm format:md",
+		"format:code": "biome format --write .",
+		"format:md": "prettier --write \"**/*.{md,mdx}\"",
+		"postinstall": "bash skills/postgres-agent-comments/scripts/fetch_pg_docs.sh",
+		"prebuild": "pnpm run fetch:pg-docs",
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"dependencies": {
+		"yaml": "2.9.0"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "2.5.14",
+		"prettier": "^3.9.8"
+	}
+}

@@ -1,0 +1,4 @@
+interface:
+  display_name: "PostgreSQL Agent Comments"
+  short_description: "Write terse, business-meaningful PostgreSQL comments"
+  default_prompt: "Use $comment-postgres to audit and improve comments for this PostgreSQL schema."

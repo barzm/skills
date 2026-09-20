@@ -1,0 +1,22 @@
+name: TruffleHog
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  trufflehog:
+    name: Secrets scan
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: TruffleHog OSS
+        uses: trufflesecurity/trufflehog@v3.97.5
+        with:
+          extra_args: --results=verified,unknown

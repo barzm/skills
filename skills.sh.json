@@ -1,0 +1,10 @@
+{
+	"$schema": "https://skills.sh/schemas/skills.sh.schema.json",
+	"groupings": [
+		{
+			"title": "Database",
+			"description": "PostgreSQL documentation and schema skills.",
+			"skills": ["postgres-agent-comments"]
+		}
+	]
+}
