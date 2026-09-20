@@ -8,6 +8,10 @@ This repo will grow into a library of reusable skills. Right now it ships one.
 
 ### [`postgres-agent-comments`](skills/postgres-agent-comments/)
 
+<p align="center">
+  <img src="skills/postgres-agent-comments/assets/icon.png" alt="Postgres Agent Comments" width="100">
+</p>
+
 Create, audit, or generate migrations for terse, LLM-friendly PostgreSQL `COMMENT ON` documentation.
 
 Use it when documenting user-defined database objects or reviewing comment coverage and quality. The skill:
