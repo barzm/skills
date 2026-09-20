@@ -16,17 +16,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Setup pnpm
-        uses: pnpm/action-setup@v4
+        uses: pnpm/action-setup@v6
         with:
           version: 10
 
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
-          node-version: 22
+          node-version: 24
           cache: pnpm
           registry-url: https://registry.npmjs.org
 
@@ -36,7 +36,12 @@ jobs:
       - name: Sync package version from tag
         run: |
           VERSION="${GITHUB_REF_NAME#v}"
-          pnpm version "$VERSION" --no-git-tag-version --no-commit-hooks
+          CURRENT="$(node -p "require('./package.json').version")"
+          if [[ "$CURRENT" == "$VERSION" ]]; then
+            printf 'package.json already at %s\n' "$VERSION"
+          else
+            pnpm version "$VERSION" --no-git-tag-version --no-commit-hooks
+          fi
 
       - name: Build
         run: pnpm build "https://github.com/${{ github.repository }}/releases/download/${{ github.ref_name }}"
